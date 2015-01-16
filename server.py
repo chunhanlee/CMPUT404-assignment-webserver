@@ -37,7 +37,7 @@ class MyWebServer(SocketServer.BaseRequestHandler):
         Splitdata =  self.data.splitlines()
         Firstword = Splitdata[0].split()
       	
-        #variables used
+        #variables used / premade HTTP 
     	style = ""
     	mes = ""
         HTTP200 = "HTTP/1.1 200 OK\n" + "Content-type: text/"
@@ -55,16 +55,18 @@ class MyWebServer(SocketServer.BaseRequestHandler):
         if (os.path.isfile(pathway) and os.getcwd() in os.path.realpath(pathway)):
             #check if end is html or css
             if (style == "html" or style == "css"):
+                #message to client opens html or css
                 mes = (HTTP200+style+"\n\n"+open(pathway).read())
 
         #checks if file is a directory and handles a redirect according to what is inputted
         elif (os.path.isdir(pathway) and os.getcwd() in os.path.realpath(pathway)):
     
-            #open index file with format html
+            #open index file with format html for first get request from http://127.0.0.1:8080
             if Firstword[1].endswith("/"):
             	pathway = pathway+"index.html"
             	mes = (reHTTP200+open(pathway).read())
             else:
+                #opens index.html file in deep, redirects http://127.0.0.1:8080/deep to http://127.0.0.1:8080/deep/
                 pathway = pathway+"/index.html"
                 mes = (HTTP301+open(pathway).read())
 
