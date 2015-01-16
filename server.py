@@ -27,7 +27,6 @@ import os.path
 
 # try: curl -v -X GET http://127.0.0.1:8080/ 
 
-#fixing VM time so comits work
 
 
 class MyWebServer(SocketServer.BaseRequestHandler):
@@ -58,7 +57,7 @@ class MyWebServer(SocketServer.BaseRequestHandler):
             if (style == "html" or style == "css"):
                 mes = (HTTP200+style+"\n\n"+open(pathway).read())
 
-        #checks if file is a directory and handles a redirect according to what is inputted 
+        #checks if file is a directory and handles a redirect according to what is inputted
         elif (os.path.isdir(pathway) and os.getcwd() in os.path.realpath(pathway)):
     
             #open index file with format html
