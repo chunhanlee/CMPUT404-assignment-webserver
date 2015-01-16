@@ -58,7 +58,7 @@ class MyWebServer(SocketServer.BaseRequestHandler):
             if (style == "html" or style == "css"):
                 mes = (HTTP200+style+"\n\n"+open(pathway).read())
 
-        #checks for first html file and check if the requested pathway is in what the file returns as its pathway, passes on initial get request
+        #checks if file is a directory and handles a redirect according to what is inputted 
         elif (os.path.isdir(pathway) and os.getcwd() in os.path.realpath(pathway)):
     
             #open index file with format html
