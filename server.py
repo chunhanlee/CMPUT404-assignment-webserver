@@ -38,11 +38,12 @@ class MyWebServer(SocketServer.BaseRequestHandler):
         Splitdata =  self.data.splitlines()
         Firstword = Splitdata[0].split()
       	
-	#variables used
+        #variables used
     	style = ""
     	mes = ""
         HTTP200 = "HTTP/1.1 200 OK\n" + "Content-type: text/"
-        HTTP2002 ="HTTP/1.1 200 OK" + "Content-type: text/"
+        reHTTP200 = "HTTP/1.1 200 OK\r\n"+ "Location: http://127.0.0.1:8080/\r\n\r\n"
+        HTTP301 = "HTTP/1.1 301 Moved Permanently\r\n"+ "Location: http://127.0.0.1:8080/deep/\r\n\r\n"
         HTTP404 = "HTTP/1.1 404 Not Found\n"+"Content-Type: text/html\n\n"+"<!DOCTYPE html>\n"+"<html><body>HTTP/1.1 404 Not Found\n"+"Not found on server directory</body></html>"
         
         #get pathway requested
@@ -61,19 +62,12 @@ class MyWebServer(SocketServer.BaseRequestHandler):
         elif (os.path.isdir(pathway) and os.getcwd() in os.path.realpath(pathway)):
     
             #open index file with format html
-	    if Firstword[1].endswith("/"):
+            if Firstword[1].endswith("/"):
             	pathway = pathway+"index.html"
-            	mes = ("HTTP/1.1 200 OK\r\n"+ "Location: http://127.0.0.1:8080/\r\n\r\n"+open(pathway).read())
-	    else:
-		pathway = pathway+"/index.html"
-		mes = ("HTTP/1.1 301 Moved Permanently\r\n"+ "Location: http://127.0.0.1:8080/deep/\r\n\r\n"+open(pathway).read())
-        
-        #redirects the /deep.css to display on page
-       # elif style == "css":
-        #    pathway = pathway.split(".")[0].lower()
-         #   pathway = pathway + "/deep.css"
-            
-          #  mes = ("HTTP/1.1 301 Moved Permanently\r\n"+ "Location: http://127.0.0.1:8080/deep\r\n\r\n"+open(pathway).read())
+            	mes = (reHTTP200+open(pathway).read())
+            else:
+                pathway = pathway+"/index.html"
+                mes = (HTTP301+open(pathway).read())
 
         #doesnt exist! not in deep or was not www index or was not get request
         else:
