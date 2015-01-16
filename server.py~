@@ -69,11 +69,11 @@ class MyWebServer(SocketServer.BaseRequestHandler):
 		mes = ("HTTP/1.1 301 Moved Permanently\r\n"+ "Location: http://127.0.0.1:8080/deep/\r\n\r\n"+open(pathway).read())
         
         #redirects the /deep.css to display on page
-       # elif style == "css":
-        #    pathway = pathway.split(".")[0].lower()
-         #   pathway = pathway + "/deep.css"
+        elif style == "css":
+            pathway = pathway.split(".")[0].lower()
+            pathway = pathway + "/deep.css"
             
-          #  mes = ("HTTP/1.1 301 Moved Permanently\r\n"+ "Location: http://127.0.0.1:8080/deep\r\n\r\n"+open(pathway).read())
+            mes = ("HTTP/1.1 301 Moved Permanently\r\n"+ "Location: http://127.0.0.1:8080/deep\r\n\r\n"+open(pathway).read())
 
         #doesnt exist! not in deep or was not www index or was not get request
         else:
