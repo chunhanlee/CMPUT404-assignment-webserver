@@ -27,7 +27,7 @@ compatible) http://docs.python.org/2/library/socketserver.html
 Used this site to reference understanding of how to format html display
 http://modperlbook.org/html/6-11-Generating-Correct-HTTP-Headers.html
 
-Used this site to reference of how we got pathways
+Used this site to reference of how we checkedpathways and checked files
 https://docs.python.org/2/library/os.path.html
 
 
