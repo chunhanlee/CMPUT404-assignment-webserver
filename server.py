@@ -30,7 +30,7 @@ import os.path
 
 
 class MyWebServer(SocketServer.BaseRequestHandler):
-
+    
     def parserequest(self, request):
         Firstword = request[0].split()
         pathway = os.getcwd() + "/www"+ Firstword[1]
