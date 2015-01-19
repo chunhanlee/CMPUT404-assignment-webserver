@@ -35,5 +35,4 @@ Used this site initially to find out how to get solution to find current working
 how to check os.realpath.(file) also in same website
 http://stackoverflow.com/questions/50499/in-python-how-do-i-get-the-path-and-name-of-the-file-that-is-currently-executin
 
-Used this site to understand the use of os.cwd()
-https://docs.python.org/2/library/os.html#os-file-dir
+Used this site to understand the use of os.cwd() https://docs.python.org/2/library/os.html#os-file-dir
